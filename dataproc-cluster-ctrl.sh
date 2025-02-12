@@ -44,11 +44,11 @@ delete_bucket() {
 create_phs_cluster() {
     echo "Create PHS cluster"
     gcloud dataproc clusters create ${PHS_CLUSTER_NAME} \
-        --region=${REGION} \
-        --single-node \
-        --enable-component-gateway \
-        --properties=spark:spark.history.fs.logDirectory=gs://${BUCKET}/phs/*/spark-job-history \
-        --max-idle=2h || fail "Couldn't create cluster"
+    --region=${REGION} \
+    --single-node \
+    --enable-component-gateway \
+    --properties=spark:spark.history.fs.logDirectory=gs://${BUCKET}/phs/*/spark-job-history \
+    --max-idle=2h || fail "Couldn't create cluster"
     echo "PHS cluster will be deleted when not used."
 }
 
@@ -58,9 +58,9 @@ up() {
     gcloud config set project ${GOOGLE_CLOUD_PROJECT}
     
     echo "Verify that Google Private Access is enabled on the default subnet in your selected region."
-    private_access_enabled = $(gcloud compute networks subnets describe default \
-  --region=${REGION} \
-  --format="get(privateIpGoogleAccess)")
+    private_access_enabled=$(gcloud compute networks subnets describe default \
+        --region=${REGION} \
+        --format="get(privateIpGoogleAccess)")
     if [[ $private_access_enabled=="True" ]]; then
         echo "Private access enabled"
     else
