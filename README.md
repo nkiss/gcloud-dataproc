@@ -1,5 +1,7 @@
 # gcloud-dataproc
 
+This project helps to learn and practice spark / pyspark. 
+
 ## Set up the environment
 Use the Google Cloud Editor and terminal.
 
@@ -23,8 +25,6 @@ In order to create a Dataproc cluster for playing with pyspark
 5. run a sample query:
 - `df.createOrReplaceTempView("tableA")`
 - `spark.sql("select count(distinct(town_name)) from tableA where net='4G' and speed<'2.0' and town_name!='NULL'").show()`
-Login with ssh to the Virtual machine and type pyspark.
-
 
 ## Clean up
 PHS cluster is deleted after 2 hours inactivity.
